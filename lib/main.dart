@@ -1,3 +1,5 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
+
 import 'widgets/cards_moeda.dart';
 import 'widgets/card_moeda_item.dart';
 import 'widgets/cards_bolsa.dart';
@@ -45,20 +47,26 @@ class _HomeMaterialState extends State<HomeMaterial> {
   }
 
   Future<Map<String, dynamic>> getDadosCotacoes() async {
+    final connectivityResult = await Connectivity().checkConnectivity();
+
     try {
-      final res = await http.get(
-        Uri.parse(
-          'http://api.hgbrasil.com/finance/quotations?key=03f48f0c',
-        ),
-      );
+      if(!(connectivityResult == ConnectivityResult.none)){
+        final res = await http.get(
+          Uri.parse(
+            'http://api.hgbrasil.com/finance/quotations?key=03f48f0c',
+          ),
+        );
 
-      if (res.statusCode != HttpStatus.ok) {
-        throw 'Erro de conexão';
+        if (res.statusCode != HttpStatus.ok) {
+          throw 'Erro de conexão';
+        }
+
+        final data = jsonDecode(res.body);
+
+        return data;
+      }else{
+        throw "Sem conexão à internet";
       }
-
-      final data = jsonDecode(res.body);
-
-      return data;
     } catch (e) {
       throw e.toString();
     }

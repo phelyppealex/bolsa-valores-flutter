@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="cotacoes_app"
+        android:label="Cotações PH"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

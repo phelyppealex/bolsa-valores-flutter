@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'card_bolsa_item.dart';
 
 class CardsBolsa extends StatelessWidget {
+  final dynamic bolsas;
+
   const CardsBolsa({
     super.key,
     required this.bolsas,
   });
-
-  final bolsas;
 
   @override
   Widget build(BuildContext context) {

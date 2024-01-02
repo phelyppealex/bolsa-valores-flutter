@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cotacoes_app/widgets/card_moeda_item.dart';
 
 class CardsMoeda extends StatelessWidget {
-  final moedas;
+  final dynamic moedas;
 
   const CardsMoeda({
     super.key,
