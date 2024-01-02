@@ -12,7 +12,7 @@ class CardsBolsa extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      scrollDirection: Axis.horizontal,
+      scrollDirection: Axis.vertical,
       itemCount: bolsas.length,
       itemBuilder: (context, index){
         return CardBolsaItem(

@@ -2,25 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:cotacoes_app/widgets/card_moeda_item.dart';
 
 class CardsMoeda extends StatelessWidget {
+  final moedas;
+
   const CardsMoeda({
     super.key,
     required this.moedas,
   });
 
-  final moedas;
-
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: moedas.length,
-      itemBuilder: (context, index){
-        return CardMoedaItem(
-          nome: '${moedas[index]["name"]}',
-          valorMoeda: '${moedas[index]["buy"]}',
-          variacaoMoeda: '${moedas[index]["variation"]}',
-        );
-      }
+    return SizedBox(
+      height: 110,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: moedas.length,
+        // physics: const ClampingScrollPhysics(),
+        itemBuilder: (context, index){
+          return CardMoedaItem(
+            nome: '${moedas[index]["name"]}',
+            valorMoeda: '${moedas[index]["buy"]}',
+            variacaoMoeda: '${moedas[index]["variation"]}',
+          );
+        }
+      ),
     );
   }
 }

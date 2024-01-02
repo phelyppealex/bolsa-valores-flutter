@@ -9,30 +9,34 @@ class CardBolsaItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          nome,
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: Column(
+        children: [
+          Text(
+            nome,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ),
-        SizedBox(height: 8),
-        Text(
-          localizacao,
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
+          const SizedBox(height: 8),
+          Text(
+            localizacao,
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ),
-        Text(
-          modificacao,
-          style: const TextStyle(
-            fontSize: 12,
+          Text(
+            modificacao,
+            style: const TextStyle(
+              fontSize: 12,
+            ),
           ),
-        )
-      ],
+          const Divider()
+        ],
+      ),
     );
   }
 }

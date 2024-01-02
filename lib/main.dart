@@ -24,8 +24,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-//*
-
 // HOME MATERIAL
 
 class HomeMaterial extends StatefulWidget {
@@ -37,7 +35,6 @@ class HomeMaterial extends StatefulWidget {
 
 // HOME MATERIAL STATE
 
-
 class _HomeMaterialState extends State<HomeMaterial> {
   late Future<Map<String, dynamic>> dadosCotacoes;
 
@@ -48,11 +45,10 @@ class _HomeMaterialState extends State<HomeMaterial> {
   }
 
   Future<Map<String, dynamic>> getDadosCotacoes() async {
-    print("get dados");
     try {
       final res = await http.get(
         Uri.parse(
-          'http://api.hgbrasil.com/finance/quotations?key=${SUA_KEY}',
+          'http://api.hgbrasil.com/finance/quotations?key=03f48f0c',
         ),
       );
 
@@ -61,8 +57,6 @@ class _HomeMaterialState extends State<HomeMaterial> {
       }
 
       final data = jsonDecode(res.body);
-
-      print(data);
 
       return data;
     } catch (e) {
@@ -83,7 +77,11 @@ class _HomeMaterialState extends State<HomeMaterial> {
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              setState(() {
+                dadosCotacoes = getDadosCotacoes();
+              });
+            },
             icon: const Icon(Icons.refresh),
           ),
         ],
@@ -110,17 +108,16 @@ class _HomeMaterialState extends State<HomeMaterial> {
           moedas.removeAt(0);
           moedas.removeAt(0);
 
-          print('Lista');
-          print(moedas);
-
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // main card
-              CardMoedaItem(
-                nome: '${dollar["name"]}',
-                valorMoeda: '${dollar["buy"]}',
-                variacaoMoeda: '${dollar["variation"]}'
+              Center(
+                child: CardMoedaItem(
+                  nome: '${dollar["name"]}',
+                  valorMoeda: '${dollar["buy"]}',
+                  variacaoMoeda: '${dollar["variation"]}'
+                ),
               ),
               const SizedBox(height: 20),
               const Text(
@@ -131,9 +128,7 @@ class _HomeMaterialState extends State<HomeMaterial> {
                 ),
               ),
               const SizedBox(height: 8),
-              Expanded(
-                child: CardsMoeda(moedas: moedas),
-              ),
+              CardsMoeda(moedas: moedas),
               const SizedBox(height: 20),
               const Text(
                 'Bolsa de Valores',
